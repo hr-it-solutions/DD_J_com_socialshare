@@ -24,7 +24,7 @@ Errors and technical modification subject to change.
 **The [Component package](https://github.com/hr-it-solutions/DD_J_pkg_com_socialshare_package) installer compilation contains:**
 
 - com_socialshare [SocialSahre](https://github.com/hr-it-solutions/DD_J_com_socialshare)
-- plg_content_socialshare_autopush [Content - SocialSahre AutoPush](https://github.com/hr-it-solutions/DD_J_plg_editors-xtd_socialshare)
+- plg_content_socialshare_autopush [Content - SocialSahre AutoPush](https://github.com/hr-it-solutions/DD_J_plg_content_socialshare_autopush)
 - plg_editors-xtd_socialshare [Button - SocialSahre](https://github.com/hr-it-solutions/DD_J_plg_editors-xtd_socialshare)
 
 # System requirements
