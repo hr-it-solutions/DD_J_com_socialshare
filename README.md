@@ -9,7 +9,7 @@ A Joomla! Backend component for social sharing. Content (com_content) social pus
 - Confirmation windows to preview posts bevor share.
 
 ### Plugin Features
-- AutoPush functionality on after article save.
+- AutoPush functionality on content after save.
 - SocialSahre Editor-XTD Button to open a social push request from the editor windows.
 
 **and much more...**
@@ -19,7 +19,7 @@ Errors and technical modification subject to change.
 ---
 **Note: This is just the component repository (com_socialshare).**
 
-**To get the component package, including required plugins, you need the component package installer compilation. [https://github.com/hr-it-solutions/DD_J_pkg_com_socialshare_package](https://github.com/hr-it-solutions/DD_J_pkg_com_socialshare_package)**
+**To get the component package, including plugins, you need the component package installer compilation. [https://github.com/hr-it-solutions/DD_J_pkg_com_socialshare_package](https://github.com/hr-it-solutions/DD_J_pkg_com_socialshare_package)**
 
 **The [Component package](https://github.com/hr-it-solutions/DD_J_pkg_com_socialshare_package) installer compilation contains:**
 
