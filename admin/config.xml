@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <!-- Component -->
+    <fieldset name="component"
+              label="COM_DD_SOCIALSHARE"
+              description="COM_DD_SOCIALSHARE_XML_DESCRIPTION">
+
+    </fieldset>
+
+    <!-- Facebook API Settings -->
+    <fieldset name="facebook_api_settings"
+              label="COM_DD_SOCIALSHARE_FACEBOOK_API_SETTINGS_LABEL"
+              description="COM_DD_SOCIALSHARE_FACEBOOK_API_SETTINGS_DESC"
+    >
+
+    </fieldset>
+
+    <!-- Permissions -->
+    <fieldset name="permissions"
+              description="JCONFIG_PERMISSIONS_DESC"
+              label="JCONFIG_PERMISSIONS_LABEL"
+    >
+
+        <field name="rules" type="rules"
+               component="com_dd_socialshare"
+               filter="rules"
+               validate="rules"
+               label="JCONFIG_PERMISSIONS_LABEL"
+               section="component"
+        />
+
+    </fieldset>
+</config>
