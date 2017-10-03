@@ -71,11 +71,11 @@ class  DD_SocialShareHelper extends JHelperContent
 			$vName == 'dashboard'
 		);
 
-		// Content
+		// Articles
 		JHtmlSidebar::addEntry(
-			JText::_('COM_DD_SOCIALSHARE_SIDEBARTITLE_LOCATIONS'),
-			'index.php?option=com_dd_socialshare&view=content',
-			$vName == 'content'
+			JText::_('COM_DD_SOCIALSHARE_SIDEBARTITLE_ARTICLES'),
+			'index.php?option=com_dd_socialshare&view=articles',
+			$vName == 'articles'
 		);
 	}
 
