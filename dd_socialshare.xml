@@ -37,8 +37,8 @@
         <submenu>
             <menu link="option=com_dd_socialshare" img="class:generic"
                   alt="DD_SocialShare">COM_DD_SOCIALSHARE_MENU_SUBMENU_DASHBOARD</menu>
-            <menu link="option=com_dd_socialshare&amp;view=content" view="content" img="class:generic"
-                  alt="DD_SocialShare/Content">COM_DD_SOCIALSHARE_MENU_SUBMENU_CONTENT</menu>
+            <menu link="option=com_dd_socialshare&amp;view=articles" view="articles" img="class:generic"
+                  alt="DD_SocialShare/Articles">COM_DD_SOCIALSHARE_MENU_SUBMENU_ARTICLES</menu>
         </submenu>
 
         <files folder="admin">
