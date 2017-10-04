@@ -48,6 +48,20 @@
                class="readonly"
         />
 
+        <field name="facebook_post_url"
+               type="text"
+               class="container readonly"
+               label="COM_DD_SOCIALSHARE_FIELD_FACEBOOK_POST_URL_LABEL"
+               description="COM_DD_SOCIALSHARE_FIELD_FACEBOOK_POST_URL_DESC"
+               readonly="true"
+        />
+
+        <field name="facebook_post_title"
+               type="text"
+               label="COM_DD_SOCIALSHARE_FIELD_FACEBOOK_POST_TITLE_LABEL"
+               description="COM_DD_SOCIALSHARE_FIELD_FACEBOOK_POST_TITLE_DESC"
+        />
+
         <field name="facebook_post_image"
                type="media"
                label="COM_DD_SOCIALSHARE_FIELD_FACEBOOK_POST_IMAGE_LABEL"
