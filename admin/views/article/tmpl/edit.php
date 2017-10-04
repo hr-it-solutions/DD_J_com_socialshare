@@ -20,7 +20,6 @@ JHtml::_('formbehavior.chosen', 'select');
 	      method="post" name="adminForm" id="adminForm" class="form-validate">
 		<div class="row-fluid">
 			<div class="span12">
-
 				<div class="form-inline form-inline-header">
 					<div class="control-group">
 						<div class="control-label">
@@ -55,21 +54,70 @@ JHtml::_('formbehavior.chosen', 'select');
                         </div>
                     </div>
 				</div>
-
                 <hr>
-
-				<div class="row-fluid form-horizontal-desktop">
-                    <div class="span12">
-                        <h2>SocialShare</h2>
-                    </div>
-				</div>
                 <div class="row-fluid form-horizontal-desktop">
                     <div class="span6 well">
-                        <h3>Facebook</h3>
+                        <h3>Facebook Preview <span class="icon-facebook pull-right"></span></h3>
+                        <hr>
+                        <div class="control-group">
+                            <div class="control-label">
+			                    <?php echo $this->form->getLabel('facebook_post_image'); ?>
+                            </div>
+                            <div class="controls">
+			                    <?php echo $this->form->getInput('facebook_post_image'); ?>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="control-label">
+			                    <?php echo $this->form->getLabel('facebook_post_text'); ?>
+                            </div>
+                            <div class="controls">
+			                    <?php echo $this->form->getInput('facebook_post_text'); ?>
+                            </div>
+                        </div>
+
+                        <div class="facebook-success">
+                            <div class="alert alert-success">
+                                <h4>This Article is post on Facebook, see postdate below!</h4>
+                            </div>
+                            <div class="control-group">
+                                <div class="control-label">
+			                        <?php echo $this->form->getLabel('facebook'); ?>
+                                </div>
+                                <div class="controls">
+			                        <?php echo $this->form->getInput('facebook'); ?>
+                                </div>
+                            </div>
+                        </div>
+
                         <button class="btn-facebook btn btn-large btn-success"><span class="icon-facebook"></span> Share now</button>
                     </div>
                     <div class="span6 well">
-                        <h3>Twitter</h3>
+                        <h3>Twitter Preview <span class="icon-twitter pull-right"></span></h3>
+                        <hr>
+                        <div class="control-group">
+                            <div class="control-label">
+			                    <?php echo $this->form->getLabel('twitter_post_text'); ?>
+                            </div>
+                            <div class="controls">
+			                    <?php echo $this->form->getInput('twitter_post_text'); ?>
+                            </div>
+                        </div>
+
+                        <div class="twitter-success">
+                            <div class="alert alert-success">
+                                <h4>This Article is post on Twitter, see postdate below!</h4>
+                            </div>
+                            <div class="control-group">
+                                <div class="control-label">
+			                        <?php echo $this->form->getLabel('twitter'); ?>
+                                </div>
+                                <div class="controls">
+			                        <?php echo $this->form->getInput('twitter'); ?>
+                                </div>
+                            </div>
+                        </div>
+
                         <button class="btn-twitter btn btn-large btn-success"><span class="icon-twitter"></span> Share now</button>
                     </div>
                 </div>
