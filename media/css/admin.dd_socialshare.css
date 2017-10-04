@@ -59,3 +59,15 @@
 .icon-google-plus:before {
   content: "\e90c";
 }
+
+#jform_facebook_post_text,
+#jform_twitter_post_text {
+  width: 100%;
+}
+
+h3 .icon-facebook {
+  color: #4267B2;
+}
+h3 .icon-twitter {
+  color: #1DA1F2;
+}
