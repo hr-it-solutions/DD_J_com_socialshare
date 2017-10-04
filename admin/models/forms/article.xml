@@ -48,6 +48,22 @@
                class="readonly"
         />
 
+        <field name="facebook_post_image"
+               type="media"
+               label="COM_DD_SOCIALSHARE_FIELD_FACEBOOK_POST_IMAGE_LABEL"
+               description="COM_DD_SOCIALSHARE_FIELD_FACEBOOK_POST_IMAGE_DESC"
+        />
+
+        <field name="facebook_post_text"
+               type="textarea"
+               size="140"
+               rows="4"
+               cols="10"
+               filter="raw"
+               label="COM_DD_SOCIALSHARE_FIELD_FACEBOOK_POST_TEXT_LABEL"
+               description="COM_DD_SOCIALSHARE_FIELD_FACEBOOK_POST_TEXT_DESC"
+        />
+
         <field name="twitter"
                type="text"
                default="0000-00-00 00:00:00"
@@ -56,6 +72,16 @@
                description="COM_DD_SOCIALSHARE_FIELD_TWITTER_DESC"
                readonly="true"
                class="readonly"
+        />
+
+        <field name="twitter_post_text"
+               type="textarea"
+               size="140"
+               rows="2"
+               cols="20"
+               filter="raw"
+               label="COM_DD_SOCIALSHARE_FIELD_TWITTER_POST_TEXT_LABEL"
+               description="COM_DD_SOCIALSHARE_FIELD_TWITTER_POST_TEXT_DESC"
         />
     </fieldset>
 
