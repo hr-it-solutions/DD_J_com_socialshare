@@ -49,6 +49,7 @@
             <folder>controllers</folder>
             <folder>helpers</folder>
             <folder>language</folder>
+            <folder>libraries</folder>
             <folder>models</folder>
             <folder>sql</folder>
             <folder>tables</folder>
