@@ -10,6 +10,7 @@
 defined('_JEXEC') or die;
 
 use Joomla\Registry\Registry;
+use Abraham\TwitterOAuth;
 
 /**
  * Class DD_SocialShareModelArticle
@@ -129,6 +130,76 @@ class DD_SocialShareModelArticle extends JModelAdmin
 	{
 		if (parent::save($data))
 		{
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * shareFacebook
+	 *
+	 * Posting status messages to a Facebook account
+	 * Adapted from: http://talkerscode.com/webtricks/auto-post-on-facebook-using-php.php
+	 *
+	 * @return bool
+	 */
+	public function shareFacebook()
+	{
+		// Include facebook-sdk
+		require_once('../libraries/facebook.php');
+
+		$accessToken                    = 'XXXXXXXXXXXXXXXXXXXXXXXXXXX';
+		$facebookData                    = array();
+		$facebookData['consumer_key']    = 'XXXXXXXXXXXXXXXXXXXXXXXXXXX';
+		$facebookData['consumer_secret'] = 'XXXXXXXXXXXXXXXXXXXXXXXXXXX';
+
+		$title       = 'XXXXXXXXXXXXXXXXXXXXXXXXXXX';
+		$targetUrl   = 'XXXXXXXXXXXXXXXXXXXXXXXXXXX';
+		$imgUrl      = 'XXXXXXXXXXXXXXXXXXXXXXXXXXX';
+		$description = 'XXXXXXXXXXXXXXXXXXXXXXXXXXX';
+
+		$facebook = new FacebookApi($facebookData);
+
+		if ($facebook->share($title, $targetUrl, $imgUrl, $description, $accessToken))
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * shareTwitter
+	 *
+	 * Posting status messages to a Twitter account
+	 * Adapted from: http://www.tech-faq.com/send-tweets-to-your-twitter-account-via-php.html
+	 *
+	 * @return bool
+	 */
+	public function shareTwitter()
+	{
+		// Include twitter-oauth
+		require_once('../libraries/twitter-oauth/src/TwitterOAuth.php');
+
+		// Set keys
+		$consumerKey       = 'XXXXXXXXXXXXXXXXXXXXXXXXXXX';
+		$consumerSecret    = 'XXXXXXXXXXXXXXXXXXXXXXXXXXX';
+		$accessToken       = 'XXXXXXXXXXXXXXXXXXXXXXXXXXX';
+		$accessTokenSecret = 'XXXXXXXXXXXXXXXXXXXXXXXXXXX';
+
+		// Create object
+		$tweet = new TwitterOAuth\TwitterOAuth($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
+
+		// Set status message
+		$tweetMessage = 'This is a tweet to my Twitter account via PHP.';
+
+		// Check for 140 characters
+		if (strlen($tweetMessage) <= 140)
+		{
+			// Post the status message
+			$tweet->post('statuses/update', array('status' => $tweetMessage));
+
 			return true;
 		}
 
