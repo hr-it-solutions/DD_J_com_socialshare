@@ -38,7 +38,7 @@ class DD_SocialShareControllerArticle extends JControllerForm
 		$context = "$this->option.edit.$this->context";
 
 		// Get associated content id
-		$content_id = $this->input->get('content_id', 0, 'int');
+		$content_id = (int) $this->input->get('content_id', 0, 'int');
 
 		// Access check.
 		if ($content_id == 0 || !$this->allowAdd())
@@ -64,7 +64,7 @@ class DD_SocialShareControllerArticle extends JControllerForm
 		$this->setRedirect(
 			\JRoute::_(
 				'index.php?option=' . $this->option . '&view=' . $this->view_item
-				. $this->getRedirectToItemAppend() . '&conent_id=' . $content_id, false
+				. $this->getRedirectToItemAppend() . '&content_id=' . $content_id, false
 			)
 		);
 
