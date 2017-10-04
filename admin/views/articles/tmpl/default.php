@@ -83,10 +83,10 @@ if ($saveOrder)
 							<?php echo JHtml::_('searchtools.sort', 'JGLOBAL_TITLE', 'a.title', $listDirn, $listOrder); ?>
 						</th>
 						<th width="10%" class="nowrap">
-							<?php echo JHtml::_('searchtools.sort', 'COM_DD_GMAPS_LOCATIONS_HEADING_FACEBOOK', 's.facebook', $listDirn, $listOrder); ?>
+							<?php echo JHtml::_('searchtools.sort', 'COM_DD_SOCIALSHARE_FACEBOOK', 's.facebook', $listDirn, $listOrder); ?>
 						</th>
 						<th width="10%" class="nowrap">
-							<?php echo JHtml::_('searchtools.sort', 'COM_DD_GMAPS_LOCATIONS_HEADING_TWITTER', 's.twitter', $listDirn, $listOrder); ?>
+							<?php echo JHtml::_('searchtools.sort', 'COM_DD_SOCIALSHARE_TWITTER', 's.twitter', $listDirn, $listOrder); ?>
 						</th>
 						</thead>
 						<tfoot>
