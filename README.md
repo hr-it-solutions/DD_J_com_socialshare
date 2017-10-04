@@ -30,6 +30,8 @@ Errors and technical modification subject to change.
 # System requirements
 Joomla 3.8 +                                                                                <br>
 PHP 7.0 or newer is recommended.
+PHP CURL extension
+PHP OpenSSL extension (already installed in most systems)
 
 # DD_ Namespace
 DD_ stands for  **D**idl**d**u e.K. | HR IT-Solutions (Brand recognition)                   <br>
