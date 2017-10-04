@@ -104,6 +104,16 @@ class DD_SocialShareModelArticle extends JModelAdmin
 		return parent::getItem($pk);
 	}
 
+	/**
+	 * Method to get the record form.
+	 *
+	 * @param   array    $data      Data for the form.
+	 * @param   boolean  $loadData  True if the form is to load its own data (default case), false if not.
+	 *
+	 * @return  JForm|boolean  A JForm object on success, false on failure
+	 *
+	 * @since    Version 1.1.0.1
+	 */
 	public function getForm($data = array(), $loadData = true)
 	{
 		// Get the form.
@@ -115,6 +125,62 @@ class DD_SocialShareModelArticle extends JModelAdmin
 		}
 
 		return $form;
+	}
+
+	/**
+	 * Method to get the data that should be injected in the form.
+	 *
+	 * @return  mixed  The data for the form.
+	 *
+	 * @since    Version 1.1.0.1
+	 */
+	protected function loadFormData()
+	{
+		// Check the session for previously entered form data.
+		$app = JFactory::getApplication();
+		$data = $app->getUserState('com_dd_socialshare.edit.article.data', array());
+
+		if (empty($data))
+		{
+			$data = $this->getItem();
+		}
+
+		// If there are params fieldsets in the form it will fail with a registry object
+		if (isset($data->params) && $data->params instanceof Registry)
+		{
+			$data->params = $data->params->toArray();
+		}
+
+		// Get associated content id
+		$content_id = (int) $app->input->get('content_id', '0', 'int');
+
+		if ($content_id !== 0)
+		{
+			JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_content/models', 'ContentModel');
+			$model = JModelLegacy::getInstance('Article', 'ContentModel', array('ignore_request' => true));
+
+			$item = $model->getItem((int) $content_id);
+
+			$item->introtext = trim(preg_replace('/\s+/', ' ', strip_tags($item->introtext)));
+
+
+			$router = JApplicationCms::getInstance('site')->getRouter();
+			$url = $router->build('/index.php?option=com_content&view=article&id=' . $item->id);
+			$url = rtrim(JUri::root(), '/') . str_replace(JUri::base(true), "", $url->toString());
+
+			$data->set('content_id', $content_id);
+			$data->set('title', $item->title);
+			$data->set('alias', $item->alias);
+			$data->set('facebook_post_title', $item->title);
+			$data->set('facebook_post_url', $url);
+			$data->set('facebook_post_image', $item->images['image_intro']);
+			$data->set('facebook_post_text', $item->introtext);
+			$data->set('twitter_post_text', substr($item->introtext, 0, 140));
+		}
+
+		$this->preprocessData('com_dd_socialshare.article', $data);
+
+		return $data;
 	}
 
 	/**
