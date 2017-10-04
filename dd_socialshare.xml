@@ -62,6 +62,12 @@
         </languages>
     </administration>
 
+    <media destination="com_dd_socialshare" folder="media">
+        <folder>css</folder>
+        <folder>fonts</folder>
+        <folder>js</folder>
+    </media>
+
     <!-- Update servers -->
     <updateservers>
         <server type="collection" priority="1" name="HR IT-Solutions Updates">http://www.hr-it-solutions.com/jextensions/update.xml</server>
