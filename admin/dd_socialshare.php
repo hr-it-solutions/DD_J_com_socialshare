@@ -18,6 +18,8 @@ JLoader::import('helpers.dd_socialshare', JPATH_COMPONENT_ADMINISTRATOR);
 
 JHtml::_('jQuery.Framework');
 
+JHTML::_('stylesheet', 'com_dd_socialshare/admin.dd_socialshare.min.css', array(), true);
+
 $controller	= JControllerLegacy::getInstance('DD_SocialShare');
 $controller->execute(JFactory::getApplication()->input->get('task'));
 $controller->redirect();
