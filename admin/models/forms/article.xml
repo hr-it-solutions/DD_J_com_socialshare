@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset>
+        <field name="id"
+               type="text"
+               default="0"
+               label="JGLOBAL_FIELD_ID_LABEL"
+               readonly="true"
+               class="readonly"
+               description="JGLOBAL_FIELD_ID_DESC"
+        />
+
+        <field name="content_id"
+               type="text"
+               default="0"
+               label="COM_DD_SOCIALSHARE_FIELD_CONTENT_ID_LABEL"
+               readonly="true"
+               class="readonly"
+               description="COM_DD_SOCIALSHARE_FIELD_CONTENT_ID_DESC"
+        />
+
+        <field name="title"
+               type="text"
+               size="40"
+               readonly="true"
+               class="readonly"
+               label="JGLOBAL_TITLE"
+               description="JFIELD_TITLE_DESC"
+               required="true"
+        />
+
+        <field name="alias"
+               type="text"
+               size="40"
+               readonly="true"
+               class="readonly"
+               label="JFIELD_ALIAS_LABEL"
+               description="JFIELD_ALIAS_DESC"
+        />
+
+        <field name="facebook"
+               type="text"
+               default="0000-00-00 00:00:00"
+               size="19"
+               label="COM_DD_SOCIALSHARE_FIELD_FACEBOOK_LABEL"
+               description="COM_DD_SOCIALSHARE_FIELD_FACEBOOK_DESC"
+               readonly="true"
+               class="readonly"
+        />
+
+        <field name="twitter"
+               type="text"
+               default="0000-00-00 00:00:00"
+               size="19"
+               label="COM_DD_SOCIALSHARE_FIELD_TWITTER_LABEL"
+               description="COM_DD_SOCIALSHARE_FIELD_TWITTER_DESC"
+               readonly="true"
+               class="readonly"
+        />
+    </fieldset>
+
+</form>
