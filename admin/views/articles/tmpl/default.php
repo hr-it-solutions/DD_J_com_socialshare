@@ -164,12 +164,12 @@ if ($saveOrder)
                                     <span class="small"><?php echo JHtml::_('date', $this->escape($item->created), 'Y-m-d H:m:s'); ?></span>
                                 </td>
 								<td class="nowrap">
-                                    <?php if($item->facebook !== null): ?>
+                                    <?php if($item->facebook !== null || $item->facebook !== '0000-00-00 00:00:00'): ?>
                                         <span class="small"><?php echo JHtml::_('date', $this->escape($item->facebook), 'Y-m-d H:m:s'); ?></span>
                                     <?php endif; ?>
 								</td>
 								<td class="nowrap">
-									<?php if($item->twitter !== null): ?>
+									<?php if($item->twitter !== null || $item->twitter !== '0000-00-00 00:00:00'): ?>
                                         <span class="small"><?php echo JHtml::_('date', $this->escape($item->twitter), 'Y-m-d H:m:s'); ?></span>
 									<?php endif; ?>
 								</td>
