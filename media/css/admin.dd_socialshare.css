@@ -43,8 +43,9 @@
   background-color: #46A546 !important;
 }
 
+.not-allowed,
 .button-arrow-down-4.disabled {
-  cursor: not-allowed;
+  cursor: not-allowed !important;
 }
 
 .icon-twitter:before {
