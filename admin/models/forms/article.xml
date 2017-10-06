@@ -23,7 +23,7 @@
                type="text"
                size="40"
                readonly="true"
-               class="readonly"
+               class="readonly required"
                label="JGLOBAL_TITLE"
                description="JFIELD_TITLE_DESC"
                required="true"
