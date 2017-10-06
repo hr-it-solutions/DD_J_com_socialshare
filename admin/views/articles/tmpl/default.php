@@ -71,23 +71,38 @@ if ($saveOrder)
 				<?php else : ?>
 					<table class="table table-striped" id="articleList">
 						<thead>
-						<th width="1%" class="center hidden-phone">
+						<th width="4%" class="center hidden-phone">
 							<input type="checkbox" name="check-toggle" value=""
 							       title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>"
 							       onclick="Joomla.checkAll(this)" />
 						</th>
-						<th width="1%" style="min-width: 55px;" class="nowrap center">
+						<th width="4%" style="min-width: 55px;" class="nowrap center">
 							<?php echo JHtml::_('searchtools.sort', 'JSTATUS', 'a.state', $listDirn, $listOrder); ?>
 						</th>
-						<th style="min-width: 100px" class="nowrap title">
+                        <th width="4%" class="nowrap">
+							<?php echo JHtml::_('searchtools.sort', 'COM_DD_SOCIALSHARE_FACEBOOK', 's.facebook', $listDirn, $listOrder); ?>
+                        </th>
+                        <th width="4%" class="nowrap">
+							<?php echo JHtml::_('searchtools.sort', 'COM_DD_SOCIALSHARE_TWITTER', 's.twitter', $listDirn, $listOrder); ?>
+                        </th>
+						<th width="52%" class="nowrap">
 							<?php echo JHtml::_('searchtools.sort', 'JGLOBAL_TITLE', 'a.title', $listDirn, $listOrder); ?>
 						</th>
+                        <th width="20%" class="nowrap">
+							<?php echo JHtml::_('searchtools.sort', 'COM_DD_SOCIALSHARE_DATE_CREATED', 'a.created', $listDirn, $listOrder); ?>
+                        </th>
 						<th width="10%" class="nowrap">
 							<?php echo JHtml::_('searchtools.sort', 'COM_DD_SOCIALSHARE_FACEBOOK', 's.facebook', $listDirn, $listOrder); ?>
 						</th>
 						<th width="10%" class="nowrap">
 							<?php echo JHtml::_('searchtools.sort', 'COM_DD_SOCIALSHARE_TWITTER', 's.twitter', $listDirn, $listOrder); ?>
 						</th>
+                        <th width="1%" class="nowrap hidden-phone">
+							<?php echo JHtml::_('searchtools.sort', 'COM_DD_SOCIALSHARE_FIELD_CONTENT_ID_LABEL', 's.socialsahre_id', $listDirn, $listOrder); ?>
+                        </th>
+                        <th width="1%" class="nowrap hidden-phone">
+							<?php echo JHtml::_('searchtools.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder); ?>
+                        </th>
 						</thead>
 						<tfoot>
 						<tr>
@@ -100,6 +115,10 @@ if ($saveOrder)
 						<?php foreach ($this->items as $i => $item):
 							$canCheckin = $user->authorise('core.manage',     'com_checkin') || $item->checked_out == $user->get('id') || $item->checked_out == 0;
 							$canChange  = false;
+
+							$url = 'index.php?option=com_dd_socialshare&task=article.' . (($item->socialsahre_id === null) ? 'add' : 'edit');
+							$url .= '&id=' . (int) $item->socialsahre_id . '&content_id=' . $item->id;
+
 							?>
 							<tr class="row<?php echo $i % 2; ?>">
 								<td class="center hidden-phone">
@@ -108,18 +127,58 @@ if ($saveOrder)
 								<td class="center">
 									<?php echo JHtml::_('jgrid.published', $item->state, $i, 'locations.', $canChange, 'cb', $item->publish_up, $item->publish_down); ?>
 								</td>
+                                <td class="nowrap">
+									<?php if($item->facebook === null): ?>
+                                        <a class="btn btn-micro jgrid" href="<?php echo JRoute::_($url); ?>">
+                                            <span class="icon-unpublish"></span> <span class="icon-facebook"></span>
+                                        </a>
+									<?php else: ?>
+                                        <a class="btn btn-micro jgrid" href="<?php echo JRoute::_($url); ?>">
+                                            <span class="icon-publish"></span> <span class="icon-facebook"></span>
+                                        </a>
+                                       <?php endif; ?>
+                                </td>
+                                <td class="nowrap">
+									<?php if($item->twitter === null): ?>
+                                        <a class="btn btn-micro jgrid" href="<?php echo JRoute::_($url); ?>">
+                                            <span class="icon-unpublish"></span> <span class="icon-twitter"></span>
+                                        </a>
+									<?php else: ?>
+                                        <a class="btn btn-micro jgrid" href="<?php echo JRoute::_($url); ?>">
+                                            <span class="icon-publish"></span> <span class="icon-twitter"></span>
+                                        </a>
+                                    <?php endif; ?>
+                                </td>
 								<td class="nowrap">
-									<a href="<?php echo JRoute::_('index.php?option=com_dd_socialshare&task=article.' . (($item->socialsahre_id === NULL) ? 'add' : 'edit') .
-                                        '&id=' . (int) $item->socialsahre_id) . '&content_id=' . $item->id; ?> ">
+									<a href="<?php echo JRoute::_($url); ?>">
 										<?php echo $this->escape($item->title);?>
 									</a>
+                                    <span class="small break-word">
+									    <?php echo JText::sprintf('JGLOBAL_LIST_ALIAS', $this->escape($item->alias)); ?>
+								    </span>
+                                    <div class="small">
+										<?php echo JText::_('JCATEGORY') . ': ' . $this->escape($item->category_title); ?>
+                                    </div>
+								</td>
+                                <td class="nowrap">
+                                    <span class="small"><?php echo JHtml::_('date', $this->escape($item->created), 'Y-m-d H:m:s'); ?></span>
+                                </td>
+								<td class="nowrap">
+                                    <?php if($item->facebook !== null): ?>
+                                        <span class="small"><?php echo JHtml::_('date', $this->escape($item->facebook), 'Y-m-d H:m:s'); ?></span>
+                                    <?php endif; ?>
 								</td>
 								<td class="nowrap">
-									<?php echo $this->escape($item->facebook); ?>
+									<?php if($item->twitter !== null): ?>
+                                        <span class="small"><?php echo JHtml::_('date', $this->escape($item->twitter), 'Y-m-d H:m:s'); ?></span>
+									<?php endif; ?>
 								</td>
-								<td class="nowrap">
-									<?php echo $this->escape($item->twitter); ?>
-								</td>
+                                <td class="hidden-phone">
+									<?php echo (int) $item->socialsahre_id; ?>
+                                </td>
+                                <td class="hidden-phone">
+									<?php echo (int) $item->id; ?>
+                                </td>
 							</tr>
 						<?php endforeach; ?>
 						</tbody>
