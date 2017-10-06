@@ -117,7 +117,7 @@ class DD_SocialShareModelArticles extends JModelList
 		$query->select(
 			$this->getState(
 				'list.select',
-				'a.id, a.title, a.catid, a.created, a.state, a.publish_up, a.publish_down'
+				'a.id, a.title, a.alias, a.catid, a.created, a.state, a.publish_up, a.publish_down'
 			)
 		);
 
