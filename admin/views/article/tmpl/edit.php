@@ -14,6 +14,10 @@ JHtml::_('behavior.keepalive');
 JHtml::_('formbehavior.chosen', '#jform_catid', null, array('disable_search_threshold' => 0));
 JHtml::_('formbehavior.chosen', 'select');
 
+JHtml::_('script', 'com_dd_socialshare/admin.dd_socialshare.min.js', array('version' => 'auto', 'relative' => true));
+
+JText::script('COM_DD_SOCIALSHARE_BUTTON_SHARE_AGAIN');
+
 ?>
 <div id="dd_socialshare-article" class="row-fluid dd_socialshare">
 <form action="<?php echo JRoute::_('index.php?option=com_dd_socialshare&layout=edit&id=' . (int) $this->item->id); ?>"
@@ -93,9 +97,11 @@ JHtml::_('formbehavior.chosen', 'select');
                         <?php echo $this->form->getInput('facebook_post_text'); ?>
                     </div>
                 </div>
-
+	            <?php if ($this->item->facebook === null): ?>
+                <div class="facebook-success hide">
+                <?php else: ?>
                 <div class="facebook-success">
-                    <?php if ($this->item->facebook != NULL): ?>
+                <?php endif; ?>
                     <div class="alert alert-success">
                         <h4><?php echo JText::sprintf('COM_DD_SOCIALSHARE_ALREADYSHARED', JText::_('COM_DD_SOCIALSHARE_FACEBOOK')); ?></h4>
                         <div class="control-group">
@@ -103,10 +109,19 @@ JHtml::_('formbehavior.chosen', 'select');
                             <div class="controls"><?php echo $this->form->getInput('facebook'); ?></div>
                         </div>
                     </div>
-                    <?php endif; ?>
                 </div>
 
-                <button class="btn-facebook btn btn-large btn-success"><span class="icon-facebook"></span> Share now</button>
+                <?php if ($this->item->facebook === null): ?>
+                <button id="facebookShare"
+                        class="btn-facebook btn btn-large btn-success"
+                        type="button"><span class="icon-facebook"></span> <span
+                            class="text"><?php echo JText::_('COM_DD_SOCIALSHARE_BUTTON_SHARE_NOW')?></span></button>
+                <?php else: ?>
+                <button id="facebookShare"
+                        class="btn btn-small btn-danger"
+                        type="button"><span class="icon-facebook"></span> <span
+                            class="text"><?php echo JText::_('COM_DD_SOCIALSHARE_BUTTON_SHARE_AGAIN')?></span></button>
+                <?php endif; ?>
             </div>
             <div class="span6 well">
                 <h3><?php echo JText::_('COM_DD_SOCIALSHARE_TWITTER') . ' ' . JText::_('COM_DD_SOCIALSHARE_PREVIEW'); ?>
@@ -121,8 +136,11 @@ JHtml::_('formbehavior.chosen', 'select');
                     </div>
                 </div>
 
+	            <?php if ($this->item->twitter === null): ?>
+                <div class="twitter-success hide">
+                <?php else: ?>
                 <div class="twitter-success">
-                    <?php if ($this->item->twitter != NULL): ?>
+                <?php endif; ?>
                     <div class="alert alert-success">
                         <h4><?php echo JText::sprintf('COM_DD_SOCIALSHARE_ALREADYSHARED', JText::_('COM_DD_SOCIALSHARE_TWITTER')); ?></h4>
                         <div class="control-group">
@@ -130,10 +148,19 @@ JHtml::_('formbehavior.chosen', 'select');
                             <div class="controls"><?php echo $this->form->getInput('twitter'); ?></div>
                         </div>
                     </div>
-                    <?php endif; ?>
                 </div>
 
-                <button class="btn-twitter btn btn-large btn-success"><span class="icon-twitter"></span> Share now</button>
+	            <?php if ($this->item->twitter === null): ?>
+                <button id="twitterShare"
+                        class="btn-twitter btn btn-large btn-success"
+                        type="button"><span class="icon-twitter"></span> <span
+                            class="text"><?php echo JText::_('COM_DD_SOCIALSHARE_BUTTON_SHARE_NOW')?></span></button>
+	            <?php else: ?>
+                <button id="twitterShare"
+                        class="btn btn-small btn-danger"
+                        type="button"><span class="icon-twitter"></span> <span
+                            class="text"><?php echo JText::_('COM_DD_SOCIALSHARE_BUTTON_SHARE_AGAIN')?></span></button>
+	            <?php endif; ?>
             </div>
         </div>
 
