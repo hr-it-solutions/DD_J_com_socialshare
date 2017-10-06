@@ -10,6 +10,8 @@
 defined('_JEXEC') or die;
 
 use Joomla\Registry\Registry;
+use Joomla\Utilities\ArrayHelper;
+
 use Abraham\TwitterOAuth;
 
 /**
@@ -97,11 +99,50 @@ class DD_SocialShareModelArticle extends JModelAdmin
 	 *
 	 * @param   integer  $pk  The id of the primary key.
 	 *
-	 * @return  mixed  Object on success, false on failure.
+	 * @return  \JObject|boolean  Object on success, false on failure.
 	 */
 	public function getItem($pk = null)
 	{
-		return parent::getItem($pk);
+		$pk = (!empty($pk)) ? $pk : (int) $this->getState($this->getName() . '.id');
+		$table = $this->getTable();
+
+		if ($pk > 0)
+		{
+			// Attempt to load the row.
+			$return = $table->load($pk);
+
+			// Check for a table object error.
+			if ($return === false && $table->getError())
+			{
+				$this->setError($table->getError());
+
+				return false;
+			}
+		}
+
+		// Convert to the \JObject before adding other data.
+		$properties = $table->getProperties(1);
+		$item = ArrayHelper::toObject($properties, '\JObject');
+
+		if (property_exists($item, 'params'))
+		{
+			$registry = new Registry($item->params);
+			$item->params = $registry->toArray();
+		}
+
+		// Set null
+		if ($item->facebook == '0000-00-00 00:00:00')
+		{
+			$item->facebook = null;
+		}
+
+		// Set null
+		if ($item->twitter == '0000-00-00 00:00:00')
+		{
+			$item->twitter = null;
+		}
+
+		return $item;
 	}
 
 	/**
@@ -173,7 +214,12 @@ class DD_SocialShareModelArticle extends JModelAdmin
 			$data->set('alias', $item->alias);
 			$data->set('facebook_post_title', $item->title);
 			$data->set('facebook_post_url', $url);
-			$data->set('facebook_post_image', $item->images['image_intro']);
+
+			if (isset($item->images['image_intro']))
+			{
+				$data->set('facebook_post_image', $item->images['image_intro']);
+			}
+
 			$data->set('facebook_post_text', $item->introtext);
 			$data->set('twitter_post_text', substr($item->introtext, 0, 140));
 		}
@@ -203,27 +249,90 @@ class DD_SocialShareModelArticle extends JModelAdmin
 	}
 
 	/**
+	 * shareSave
+	 *
+	 * execute share{SocialPlattform} event AND
+	 * execute save model
+	 *
+	 * @return boolean | array with success data for the view
+	 */
+	public function shareSave()
+	{
+		$app    = JFactory::getApplication();
+		$input  = $app->input;
+
+		$event      = $input->post->get('event', '', 'STRING');
+		$id         = $input->post->get('id',    '', 'INT');
+		$content_id = $input->post->get('cid',   '', 'INT');
+
+		switch ($event)
+		{
+			case 'facebook':
+				$state = $this->shareFacebook(
+					$input->post->get('title',  '', 'STRING'),
+					$input->post->get('url',    '', 'STRING'),
+					$input->post->get('image',  '', 'STRING'),
+					$input->post->get('url',    '', 'STRING')
+				);
+				break;
+
+			case 'twitter':
+				$state = $this->shareTwitter(
+					$input->post->get('desc',   '', 'STRING')
+				);
+				break;
+
+			default:
+				return false;
+		}
+
+		$data = array($event => JFactory::getDate()->toSql(), 'id' => $id, 'content_id' => $content_id);
+
+		if (!$state)
+		{
+			return false;
+		}
+
+		if ($this->save($data))
+		{
+			// Last InserId
+			$data['id'] = (int) $this->getState($this->getName() . '.id');
+
+			return array_merge(array('success' => 'true', 'date' => $data[$event]), $data);
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	/**
 	 * shareFacebook
 	 *
 	 * Posting status messages to a Facebook account
 	 * Adapted from: http://talkerscode.com/webtricks/auto-post-on-facebook-using-php.php
 	 *
-	 * @return bool
+	 * @param   string  $title        title
+	 * @param   string  $targetUrl    absoulte url to the article
+	 * @param   string  $imgUrl       absoulte url to the article introimage
+	 * @param   string  $description  article description
+	 *
+	 * @return  bool
 	 */
-	public function shareFacebook()
+	public function shareFacebook($title, $targetUrl, $imgUrl, $description)
 	{
+		// Testing
+		return true;
+
 		// Include facebook-sdk
-		require_once('../libraries/facebook.php');
+		require_once JPATH_COMPONENT_ADMINISTRATOR . '/libraries/facebook.php';
 
-		$accessToken                    = 'XXXXXXXXXXXXXXXXXXXXXXXXXXX';
+		$params = JComponentHelper::getParams('com_dd_socialshare');
+
+		$accessToken                     = $params->get('facebook_accessToken');
 		$facebookData                    = array();
-		$facebookData['consumer_key']    = 'XXXXXXXXXXXXXXXXXXXXXXXXXXX';
-		$facebookData['consumer_secret'] = 'XXXXXXXXXXXXXXXXXXXXXXXXXXX';
-
-		$title       = 'XXXXXXXXXXXXXXXXXXXXXXXXXXX';
-		$targetUrl   = 'XXXXXXXXXXXXXXXXXXXXXXXXXXX';
-		$imgUrl      = 'XXXXXXXXXXXXXXXXXXXXXXXXXXX';
-		$description = 'XXXXXXXXXXXXXXXXXXXXXXXXXXX';
+		$facebookData['consumer_key']    = $params->get('facebook_consumerKey');
+		$facebookData['consumer_secret'] = $params->get('facebook_consumerSecret');
 
 		$facebook = new FacebookApi($facebookData);
 
@@ -241,24 +350,27 @@ class DD_SocialShareModelArticle extends JModelAdmin
 	 * Posting status messages to a Twitter account
 	 * Adapted from: http://www.tech-faq.com/send-tweets-to-your-twitter-account-via-php.html
 	 *
-	 * @return bool
+	 * @param   string  $tweetMessage  tweet status message
+	 *
+	 * @return  bool
 	 */
-	public function shareTwitter()
+	public function shareTwitter($tweetMessage)
 	{
+		return true;
+
 		// Include twitter-oauth
-		require_once('../libraries/twitter-oauth/src/TwitterOAuth.php');
+		require_once  JPATH_COMPONENT_ADMINISTRATOR . '/libraries/twitter-oauth/autoload.php';
+
+		$params = JComponentHelper::getParams('com_dd_socialshare');
 
 		// Set keys
-		$consumerKey       = 'XXXXXXXXXXXXXXXXXXXXXXXXXXX';
-		$consumerSecret    = 'XXXXXXXXXXXXXXXXXXXXXXXXXXX';
-		$accessToken       = 'XXXXXXXXXXXXXXXXXXXXXXXXXXX';
-		$accessTokenSecret = 'XXXXXXXXXXXXXXXXXXXXXXXXXXX';
+		$consumerKey       = $params->get('twitter_consumerKey');
+		$consumerSecret    = $params->get('twitter_consumerSecret');
+		$accessToken       = $params->get('twitter_accessToken');
+		$accessTokenSecret = $params->get('twitter_accessTokenSecret');
 
 		// Create object
 		$tweet = new TwitterOAuth\TwitterOAuth($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
-
-		// Set status message
-		$tweetMessage = 'This is a tweet to my Twitter account via PHP.';
 
 		// Check for 140 characters
 		if (strlen($tweetMessage) <= 140)
