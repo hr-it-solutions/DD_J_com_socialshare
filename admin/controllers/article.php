@@ -25,7 +25,6 @@ class DD_SocialShareControllerArticle extends JControllerForm
 		parent::__construct($config);
 	}
 
-
 	/**
 	 * Method to add a new record.
 	 *
@@ -114,5 +113,77 @@ class DD_SocialShareControllerArticle extends JControllerForm
 		}
 
 		return false;
+	}
+
+
+
+	/**
+	 * Method to edit an existing record.
+	 *
+	 * @param   string  $key     The name of the primary key of the URL variable.
+	 * @param   string  $urlVar  The name of the URL variable if different from the primary key
+	 *                           (sometimes required to avoid router collisions).
+	 *
+	 * @return  boolean  True if access level check and checkout passes, false otherwise.
+	 *
+	 * @since   1.0.0.0
+	 */
+	public function edit($key = null, $urlVar = null)
+	{
+		// Do not cache the response to this, its a redirect, and mod_expires and google chrome browser bugs cache it forever!
+		\JFactory::getApplication()->allowCache(false);
+
+		// Get associated content id
+		$content_id = (int) $this->input->get('content_id', 0, 'int');
+
+		$model = $this->getModel();
+		$table = $model->getTable();
+		$cid   = $this->input->post->get('cid', array(), 'array');
+		$context = "$this->option.edit.$this->context";
+
+		// Determine the name of the primary key for the data.
+		if (empty($key))
+		{
+			$key = $table->getKeyName();
+		}
+
+		// To avoid data collisions the urlVar may be different from the primary key.
+		if (empty($urlVar))
+		{
+			$urlVar = $key;
+		}
+
+		// Get the previous record id (if any) and the current record id.
+		$recordId = (int) (count($cid) ? $cid[0] : $this->input->getInt($urlVar));
+
+		// Access check.
+		if ($content_id == 0 || !$this->allowEdit(array($key => $recordId), $key))
+		{
+			// Set the internal error and also the redirect error.
+			$this->setError(\JText::_('JLIB_APPLICATION_ERROR_CREATE_RECORD_NOT_PERMITTED'));
+			$this->setMessage($this->getError(), 'error');
+
+			$this->setRedirect(
+				\JRoute::_(
+					'index.php?option=' . $this->option . '&view=' . $this->view_list
+					. $this->getRedirectToListAppend(), false
+				)
+			);
+
+			return false;
+		}
+
+		// Clear the record edit information from the session.
+		\JFactory::getApplication()->setUserState($context . '.data', null);
+
+		// Redirect to the edit screen.
+		$this->setRedirect(
+			\JRoute::_(
+				'index.php?option=' . $this->option . '&view=' . $this->view_item
+				. $this->getRedirectToItemAppend($recordId, $urlVar) . '&content_id=' . $content_id, false
+			)
+		);
+
+		return true;
 	}
 }
