@@ -29,8 +29,8 @@ Errors and technical modification subject to change.
 
 # System requirements
 Joomla 3.8 +                                                                                <br>
-PHP 7.0 or newer is recommended.
-PHP CURL extension
+PHP 7.0 or newer is recommended.                                                            <br>
+PHP CURL extension                                                                          <br>
 PHP OpenSSL extension (already installed in most systems)
 
 # DD_ Namespace
