@@ -57,9 +57,9 @@
         </files>
         <languages folder="admin">
             <language tag="en-GB">language/en-GB/en-GB.com_dd_socialshare.ini</language>
-            <language tag="en-GB">language/en-GB/en-GB.com_dd_socialshar.sys.ini</language>
-            <language tag="de-DE">language/de-DE/de-DE.com_dd_socialshar.ini</language>
-            <language tag="de-DE">language/de-DE/de-DE.com_dd_socialshar.sys.ini</language>
+            <language tag="en-GB">language/en-GB/en-GB.com_dd_socialshare.sys.ini</language>
+            <language tag="de-DE">language/de-DE/de-DE.com_dd_socialshare.ini</language>
+            <language tag="de-DE">language/de-DE/de-DE.com_dd_socialshare.sys.ini</language>
         </languages>
     </administration>
 

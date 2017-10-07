@@ -128,7 +128,7 @@ if ($saveOrder)
 									<?php echo JHtml::_('jgrid.published', $item->state, $i, 'locations.', $canChange, 'cb', $item->publish_up, $item->publish_down); ?>
 								</td>
                                 <td class="nowrap">
-									<?php if($item->facebook === null): ?>
+	                                <?php if($item->facebook === '0000-00-00 00:00:00'): ?>
                                         <a class="btn btn-micro jgrid" href="<?php echo JRoute::_($url); ?>">
                                             <span class="icon-unpublish"></span> <span class="icon-facebook"></span>
                                         </a>
@@ -139,7 +139,7 @@ if ($saveOrder)
                                        <?php endif; ?>
                                 </td>
                                 <td class="nowrap">
-									<?php if($item->twitter === null): ?>
+	                                <?php if($item->twitter === '0000-00-00 00:00:00'): ?>
                                         <a class="btn btn-micro jgrid" href="<?php echo JRoute::_($url); ?>">
                                             <span class="icon-unpublish"></span> <span class="icon-twitter"></span>
                                         </a>
@@ -164,12 +164,12 @@ if ($saveOrder)
                                     <span class="small"><?php echo JHtml::_('date', $this->escape($item->created), 'Y-m-d H:m:s'); ?></span>
                                 </td>
 								<td class="nowrap">
-                                    <?php if($item->facebook !== null): ?>
+                                    <?php if($item->facebook !== '0000-00-00 00:00:00'): ?>
                                         <span class="small"><?php echo JHtml::_('date', $this->escape($item->facebook), 'Y-m-d H:m:s'); ?></span>
                                     <?php endif; ?>
 								</td>
 								<td class="nowrap">
-									<?php if($item->twitter !== null): ?>
+									<?php if($item->twitter !== '0000-00-00 00:00:00'): ?>
                                         <span class="small"><?php echo JHtml::_('date', $this->escape($item->twitter), 'Y-m-d H:m:s'); ?></span>
 									<?php endif; ?>
 								</td>
