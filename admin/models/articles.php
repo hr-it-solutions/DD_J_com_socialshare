@@ -130,8 +130,8 @@ class DD_SocialShareModelArticles extends JModelList
 		// Join over socialshare
 		$query  ->select(
 			$db->quoteName('s.id') . 'AS' . $db->quoteName('socialsahre_id') . ',' .
-			$db->quoteName('s.facebook') . ',' .
-			$db->quoteName('s.twitter')
+			'IFNULL(' . $db->quoteName('s.facebook') . ', \'0000-00-00 00:00:00\')' . 'AS' . $db->quoteName('facebook') . ',' .
+			'IFNULL(' . $db->quoteName('s.twitter') . ', \'0000-00-00 00:00:00\')' . 'AS' . $db->quoteName('twitter')
 		)
 			->leftJoin($db->qn('#__dd_socialshare', 's') . ' ON (' . $db->qn('s.content_id') . ' = ' . $db->qn('a.id') . ')');
 
