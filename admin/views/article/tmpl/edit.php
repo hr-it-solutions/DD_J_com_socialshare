@@ -61,7 +61,7 @@ JText::script('COM_DD_SOCIALSHARE_BUTTON_SHARE_AGAIN');
         <div class="row-fluid form-horizontal-desktop">
             <div class="span6 well">
                 <h3><?php echo JText::_('COM_DD_SOCIALSHARE_FACEBOOK') . ' ' .  JText::_('COM_DD_SOCIALSHARE_PREVIEW'); ?>
-                    <span class="icon-twitter pull-right"></span>
+                    <span class="icon-facebook pull-right"></span>
                 </h3><hr>
                 <div class="row-fluid">
                     <div class="span6 control-group">
