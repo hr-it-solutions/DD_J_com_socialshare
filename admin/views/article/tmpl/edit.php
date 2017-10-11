@@ -64,7 +64,7 @@ JText::script('COM_DD_SOCIALSHARE_BUTTON_SHARE_AGAIN');
                     <span class="icon-facebook pull-right"></span>
                 </h3><hr>
                 <div class="row-fluid">
-                    <div class="span6 control-group">
+                    <div class="span6 control-group modal-100">
                         <div class="control-label">
                             <?php echo $this->form->getLabel('facebook_post_title'); ?>
                         </div>
@@ -72,7 +72,7 @@ JText::script('COM_DD_SOCIALSHARE_BUTTON_SHARE_AGAIN');
                             <?php echo $this->form->getInput('facebook_post_title'); ?>
                         </div>
                     </div>
-                    <div class="span6 control-group">
+                    <div class="span6 control-group modal-100">
                         <div class="control-label">
                             <?php echo $this->form->getLabel('facebook_post_image'); ?>
                         </div>
