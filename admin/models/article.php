@@ -321,9 +321,6 @@ class DD_SocialShareModelArticle extends JModelAdmin
 	 */
 	public function shareFacebook($title, $targetUrl, $imgUrl, $description)
 	{
-		// Testing
-		return true;
-
 		// Include facebook-sdk
 		require_once JPATH_COMPONENT_ADMINISTRATOR . '/libraries/facebook.php';
 
@@ -356,8 +353,6 @@ class DD_SocialShareModelArticle extends JModelAdmin
 	 */
 	public function shareTwitter($tweetMessage)
 	{
-		return true;
-
 		// Include twitter-oauth
 		require_once  JPATH_COMPONENT_ADMINISTRATOR . '/libraries/twitter-oauth/autoload.php';
 
