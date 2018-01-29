@@ -30,7 +30,8 @@ class DD_SocialShareViewDashboard extends JViewLegacy
 	 */
 	public function display($tpl = null)
 	{
-		$this->items = $this->get('items');
+		$this->getModel()->facebookOAuth();
+		$this->getModel()->facebookTestPost();
 
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
