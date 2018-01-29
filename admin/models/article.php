@@ -221,7 +221,7 @@ class DD_SocialShareModelArticle extends JModelAdmin
 			}
 
 			$data->set('facebook_post_text', $item->introtext);
-			$data->set('twitter_post_text', substr($item->introtext, 0, 140));
+			$data->set('twitter_post_text', substr($item->introtext, 0, 280));
 		}
 
 		$this->preprocessData('com_dd_socialshare.article', $data);
@@ -272,7 +272,7 @@ class DD_SocialShareModelArticle extends JModelAdmin
 					$input->post->get('title',  '', 'STRING'),
 					$input->post->get('url',    '', 'STRING'),
 					$input->post->get('image',  '', 'STRING'),
-					$input->post->get('url',    '', 'STRING')
+					$input->post->get('desc',    '', 'STRING')
 				);
 				break;
 
@@ -280,6 +280,12 @@ class DD_SocialShareModelArticle extends JModelAdmin
 				$state = $this->shareTwitter(
 					$input->post->get('desc',   '', 'STRING')
 				);
+
+				if (count($state->errors))
+				{
+					return array('success' => 'false', 'state' => $state->errors);
+				}
+
 				break;
 
 			default:
@@ -290,7 +296,7 @@ class DD_SocialShareModelArticle extends JModelAdmin
 
 		if (!$state)
 		{
-			return false;
+			return array('success' => 'false', 'state' => $state);
 		}
 
 		if ($this->save($data))
@@ -298,11 +304,11 @@ class DD_SocialShareModelArticle extends JModelAdmin
 			// Last InserId
 			$data['id'] = (int) $this->getState($this->getName() . '.id');
 
-			return array_merge(array('success' => 'true', 'date' => $data[$event]), $data);
+			return array_merge(array('success' => 'true', 'date' => $data[$event], 'state' => $state), $data);
 		}
 		else
 		{
-			return false;
+			return array('success' => 'false', 'state' => $state);
 		}
 	}
 
@@ -310,35 +316,59 @@ class DD_SocialShareModelArticle extends JModelAdmin
 	 * shareFacebook
 	 *
 	 * Posting status messages to a Facebook account
-	 * Adapted from: http://talkerscode.com/webtricks/auto-post-on-facebook-using-php.php
 	 *
 	 * @param   string  $title        title
 	 * @param   string  $targetUrl    absoulte url to the article
 	 * @param   string  $imgUrl       absoulte url to the article introimage
 	 * @param   string  $description  article description
 	 *
-	 * @return  bool
+	 * @return  bool|object
 	 */
 	public function shareFacebook($title, $targetUrl, $imgUrl, $description)
 	{
-		// Include facebook-sdk
-		require_once JPATH_COMPONENT_ADMINISTRATOR . '/libraries/facebook.php';
-
-		$params = JComponentHelper::getParams('com_dd_socialshare');
-
-		$accessToken                     = $params->get('facebook_accessToken');
-		$facebookData                    = array();
-		$facebookData['consumer_key']    = $params->get('facebook_consumerKey');
-		$facebookData['consumer_secret'] = $params->get('facebook_consumerSecret');
-
-		$facebook = new FacebookApi($facebookData);
-
-		if ($facebook->share($title, $targetUrl, $imgUrl, $description, $accessToken))
+		// Prepare Image URL
+		// todo: image is currently not supported! https://stackoverflow.com/questions/47348337/facebook-graph-v2-11-only-owners-of-the-url-have-the-ability-to-specify-the-pic?rq=1
+		/*if ($imgUrl != '')
 		{
-			return true;
+			$imgUrl = JUri::root() . $imgUrl;
+		}
+		else
+		{
+			$imgUrl = null;
+		}*/
+
+		// Get Component Params
+		$comparams  = JComponentHelper::getParams('com_dd_socialshare');
+
+		$oauth = new JFacebookOAuth;
+
+		$token = array(
+			'access_token' => $comparams->get('facebook_accessToken'),
+			'token_type' => $comparams->get('facebook_accessToken_type'),
+			'created' => $comparams->get('facebook_accessToken_created'));
+
+		$oauth->setToken($token);
+
+		$facebook = new JFacebook($oauth);
+
+		$accounts = $facebook->user->get('me/accounts');
+
+		// Loop through accounts
+		foreach ($accounts->data as $account)
+		{
+			if ($account->id == $comparams->get('facebook_accountID'))
+			{
+				$facebook->oauth->setToken(array('access_token' => $account->access_token));
+				break;
+			}
 		}
 
-		return false;
+		return $facebook->user->createPost(
+			$comparams->get('facebook_accountID'),
+			$description,
+			$targetUrl/*,
+			$imgUrl,
+			$title*/);
 	}
 
 	/**
@@ -349,7 +379,7 @@ class DD_SocialShareModelArticle extends JModelAdmin
 	 *
 	 * @param   string  $tweetMessage  tweet status message
 	 *
-	 * @return  bool
+	 * @return  bool|array|object
 	 */
 	public function shareTwitter($tweetMessage)
 	{
@@ -367,13 +397,11 @@ class DD_SocialShareModelArticle extends JModelAdmin
 		// Create object
 		$tweet = new TwitterOAuth\TwitterOAuth($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
 
-		// Check for 140 characters
-		if (strlen($tweetMessage) <= 140)
+		// Check for 280 characters
+		if (strlen($tweetMessage) <= 280)
 		{
 			// Post the status message
-			$tweet->post('statuses/update', array('status' => $tweetMessage));
-
-			return true;
+			return $tweet->post('statuses/update', array('status' => $tweetMessage));
 		}
 
 		return false;
