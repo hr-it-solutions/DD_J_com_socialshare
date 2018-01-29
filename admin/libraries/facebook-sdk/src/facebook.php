@@ -1,7 +1,4 @@
 <?php
-
-defined('_JEXEC') or die;
-
 /**
  * Copyright 2011 Facebook, Inc.
  *
@@ -17,6 +14,8 @@ defined('_JEXEC') or die;
  * License for the specific language governing permissions and limitations
  * under the License.
  */
+
+defined('_JEXEC') or die;
 
 require_once "base_facebook.php";
 

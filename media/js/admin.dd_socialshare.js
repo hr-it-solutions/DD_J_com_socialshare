@@ -4,7 +4,7 @@
  * @author     HR IT-Solutions Florian Häusler <info@hr-it-solutions.com>
  * @copyright  Copyright (C) 2017 - 2017 Didldu e.K. | HR IT-Solutions
  * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
-**/
+ **/
 
 ; var DD_SocialShare = (function($, document, undefined) {
 
@@ -16,6 +16,8 @@
             var id  = $('#jform_id').val(),
                 cid = $('#jform_content_id').val();
 
+            $('#' + event + 'Share .text').html(Joomla.JText._('COM_DD_SOCIALSHARE_BUTTON_SHARE_WAIT'));
+
             $.ajax({
                 method: "POST",
                 url: "index.php?option=com_dd_socialshare&view=article&format=json",
@@ -23,17 +25,29 @@
             })
                 .done(function( data ) {
 
-                    var data = JSON.parse(data);
+                    data = JSON.parse(data);
 
-                    $('#jform_id').attr('value', data.id);
-                    $('#jform_content_id').attr('value', data.content_id);
-                    $('#jform_' + event).attr('value', data.date);
-                    $('.' + event + '-success').removeClass('hide');
+                    if(data.success === 'true')
+                    {
+                        $('#jform_id').attr('value', data.id);
+                        $('#jform_content_id').attr('value', data.content_id);
+                        $('#jform_' + event).attr('value', data.date);
+                        $('.' + event + '-success').removeClass('hide');
 
-                    $('#' + event + 'Share').removeClass('btn-success btn-large btn-' + event);
-                    $('#' + event + 'Share').addClass('btn-danger btn-small');
+                        $('#' + event + 'Share')
+                            .removeClass('btn-success btn-large btn-' + event)
+                            .addClass('btn-danger btn-small');
 
-                    $('#' + event + 'Share .text').html(Joomla.JText._('COM_DD_SOCIALSHARE_BUTTON_SHARE_AGAIN'));
+                        $('#' + event + 'Share .text').html(Joomla.JText._('COM_DD_SOCIALSHARE_BUTTON_SHARE_AGAIN'));
+                    }
+                    else
+                    {
+                        // todo: Add a Joomla System Message by JS and Add A JText Language string ;)
+                        alert('API Error, check the component parameter and your ' + event + ' API settings\nConsole log is enabled.');
+                        console.log(data);
+
+                        $('#' + event + 'Share .text').html(Joomla.JText._('COM_DD_SOCIALSHARE_BUTTON_SHARE_NOW'));
+                    }
 
                 })
                 .fail(function() {

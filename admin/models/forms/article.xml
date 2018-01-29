@@ -70,7 +70,7 @@
 
         <field name="facebook_post_text"
                type="textarea"
-               size="140"
+               size="500"
                rows="4"
                cols="10"
                filter="raw"
@@ -90,7 +90,7 @@
 
         <field name="twitter_post_text"
                type="textarea"
-               size="140"
+               size="280"
                rows="2"
                cols="20"
                filter="raw"

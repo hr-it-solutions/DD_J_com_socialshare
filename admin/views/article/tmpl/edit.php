@@ -16,7 +16,9 @@ JHtml::_('formbehavior.chosen', 'select');
 
 JHtml::_('script', 'com_dd_socialshare/admin.dd_socialshare.min.js', array('version' => 'auto', 'relative' => true));
 
+JText::script('COM_DD_SOCIALSHARE_BUTTON_SHARE_NOW');
 JText::script('COM_DD_SOCIALSHARE_BUTTON_SHARE_AGAIN');
+JText::script('COM_DD_SOCIALSHARE_BUTTON_SHARE_WAIT');
 
 ?>
 <div id="dd_socialshare-article" class="row-fluid dd_socialshare">
@@ -64,7 +66,7 @@ JText::script('COM_DD_SOCIALSHARE_BUTTON_SHARE_AGAIN');
                     <span class="icon-facebook pull-right"></span>
                 </h3><hr>
                 <div class="row-fluid">
-                    <div class="span6 control-group">
+                    <div class="span6 control-group modal-100" style="display: none">
                         <div class="control-label">
                             <?php echo $this->form->getLabel('facebook_post_title'); ?>
                         </div>
@@ -72,7 +74,7 @@ JText::script('COM_DD_SOCIALSHARE_BUTTON_SHARE_AGAIN');
                             <?php echo $this->form->getInput('facebook_post_title'); ?>
                         </div>
                     </div>
-                    <div class="span6 control-group">
+                    <div class="span6 control-group modal-100" style="display: none">
                         <div class="control-label">
                             <?php echo $this->form->getLabel('facebook_post_image'); ?>
                         </div>
