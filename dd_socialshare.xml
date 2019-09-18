@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <extension type="component" version="3.8.0" method="upgrade">
     <name>com_dd_socialshare</name>
-    <version>1.0.0.1</version>
+    <version>1.0.0.0-alpha</version>
     <creationDate>30.09.2017</creationDate>
     <author>HR-IT-Solutions Florian Häusler</author>
     <authorEmail>info@hr-it-solutions.com</authorEmail>
