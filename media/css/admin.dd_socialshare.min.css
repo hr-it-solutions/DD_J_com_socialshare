@@ -1,0 +1,9 @@
+/**
+ * @package    DD_SocialSahre
+ *
+ * @author     HR IT-Solutions Florian Häusler <info@hr-it-solutions.com>
+ * @copyright  Copyright (C) 2017 - 2019 HR-IT-Solutions GmbH
+ * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+**/
+
+@font-face{font-family:icomoon;src:url(../fonts/icomoon.eot?s2c32l);src:url(../fonts/icomoon.eot?s2c32l#iefix) format('embedded-opentype'),url(../fonts/icomoon.ttf?s2c32l) format('truetype'),url(../fonts/icomoon.woff?s2c32l) format('woff'),url(../fonts/icomoon.svg?s2c32l#icomoon) format('svg');font-weight:400;font-style:normal}[class*=" icon-"],[class^=icon-]{font-family:icomoon!important;speak:none;font-style:normal;font-weight:400;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.btn-facebook{background-color:#4267B2!important}.btn-twitter{background-color:#1DA1F2!important}.btn-facebook:hover,.btn-twitter:hover{background-color:#46A546!important}.button-arrow-down-4.disabled,.not-allowed{cursor:not-allowed!important}.icon-twitter:before{content:"\e908"}.icon-instagram:before{content:"\e909"}.icon-facebook:before{content:"\e90a"}.icon-google-plus:before{content:"\e90c"}#jform_facebook_post_text,#jform_twitter_post_text{width:100%}h3 .icon-facebook{color:#4267B2}h3 .icon-twitter{color:#1DA1F2}

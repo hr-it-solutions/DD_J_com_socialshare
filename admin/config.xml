@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <!-- Component -->
+    <fieldset name="component"
+              label="COM_DD_SOCIALSHARE"
+              description="COM_DD_SOCIALSHARE_XML_DESCRIPTION">
+
+    </fieldset>
+
+    <!-- Facebook API Settings -->
+    <fieldset name="facebook_api_settings"
+              label="COM_DD_SOCIALSHARE_FACEBOOK_API_SETTINGS_LABEL"
+              description="COM_DD_SOCIALSHARE_FACEBOOK_API_SETTINGS_DESC"
+    >
+
+        <field name="facebook_consumerKey"
+               type="text"
+               label="COM_DD_SOCIALSHARE_FACEBOOK_API_SETTING_CONSUMERKEY_LABEL"
+               description="COM_DD_SOCIALSHARE_FACEBOOK_API_SETTING_CONSUMERKEY_DESC"
+        />
+
+        <field name="facebook_consumerSecret"
+               type="text"
+               label="COM_DD_SOCIALSHARE_FACEBOOK_API_SETTING_CONSUMERSECRET_LABEL"
+               description="COM_DD_SOCIALSHARE_FACEBOOK_API_SETTING_CONSUMERSECRET_DESC"
+        />
+
+        <field name="facebook_accountID"
+               type="text"
+               label="COM_DD_SOCIALSHARE_FACEBOOK_API_SETTING_ACCOUNTID_LABEL"
+               description="COM_DD_SOCIALSHARE_FACEBOOK_API_SETTING_ACCOUNTID_DESC"
+        />
+
+        <field name="facebook_accessToken_helper"
+               type="spacer"
+               label="COM_DD_SOCIALSHARE_FACEBOOK_API_SETTING_ACCESSTOKEN_HELPER_LABEL"
+        />
+
+        <field name="facebook_accessToken"
+               type="text"
+               readonly="true"
+               class="readonly"
+               label="COM_DD_SOCIALSHARE_FACEBOOK_API_SETTING_ACCESSTOKEN_LABEL"
+               description="COM_DD_SOCIALSHARE_FACEBOOK_API_SETTING_ACCESSTOKEN_DESC"
+        />
+
+        <field name="facebook_accessToken_type"
+               type="text"
+               readonly="true"
+               class="readonly"
+               label="COM_DD_SOCIALSHARE_FACEBOOK_API_SETTING_ACCESSTOKEN_TYPE_LABEL"
+               description="COM_DD_SOCIALSHARE_FACEBOOK_API_SETTING_ACCESSTOKEN_TYPE_DESC"
+        />
+
+        <field name="facebook_accessToken_created"
+               type="text"
+               readonly="true"
+               class="readonly"
+               label="COM_DD_SOCIALSHARE_FACEBOOK_API_SETTING_ACCESSTOKEN_CREATED_LABEL"
+               description="COM_DD_SOCIALSHARE_FACEBOOK_API_SETTING_ACCESSTOKEN_CREATED_DESC"
+        />
+
+        <field name="facebook_accessToken_helper2"
+               type="spacer"
+               label="COM_DD_SOCIALSHARE_FACEBOOK_API_SETTING_ACCESSTOKEN_HELPER2_LABEL"
+        />
+
+    </fieldset>
+
+    <fieldset name="twitter_api_settings"
+              label="COM_DD_SOCIALSHARE_TWITTER_API_SETTINGS_LABEL"
+              description="COM_DD_SOCIALSHARE_TWITTER_API_SETTINGS_DESC"
+    >
+
+        <field name="twitter_consumerKey"
+               type="text"
+               label="COM_DD_SOCIALSHARE_TWITTER_API_SETTING_CONSUMERKEY_LABEL"
+               description="COM_DD_SOCIALSHARE_TWITTER_API_SETTING_CONSUMERKEY_DESC"
+        />
+
+        <field name="twitter_consumerSecret"
+               type="text"
+               label="COM_DD_SOCIALSHARE_TWITTER_API_SETTING_CONSUMERSECRET_LABEL"
+               description="COM_DD_SOCIALSHARE_TWITTER_API_SETTING_CONSUMERSECRET_DESC"
+        />
+
+        <field name="twitter_accessToken"
+               type="text"
+               label="COM_DD_SOCIALSHARE_TWITTER_API_SETTING_ACCESSTOKEN_LABEL"
+               description="COM_DD_SOCIALSHARE_TWITTER_API_SETTING_ACCESSTOKEN_DESC"
+        />
+
+        <field name="twitter_accessTokenSecret"
+               type="text"
+               label="COM_DD_SOCIALSHARE_TWITTER_API_SETTING_ACCESSTOKENSECRET_LABEL"
+               description="COM_DD_SOCIALSHARE_TWITTER_API_SETTING_ACCESSTOKENSECRET_DESC"
+        />
+
+    </fieldset>
+
+    <!-- Permissions -->
+    <fieldset name="permissions"
+              description="JCONFIG_PERMISSIONS_DESC"
+              label="JCONFIG_PERMISSIONS_LABEL"
+    >
+
+        <field name="rules" type="rules"
+               component="com_dd_socialshare"
+               filter="rules"
+               validate="rules"
+               label="JCONFIG_PERMISSIONS_LABEL"
+               section="component"
+        />
+
+    </fieldset>
+</config>
