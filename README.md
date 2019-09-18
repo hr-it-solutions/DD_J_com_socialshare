@@ -24,8 +24,9 @@ Errors and technical modification subject to change.
 **The [Component package](https://github.com/hr-it-solutions/DD_J_pkg_com_socialshare_package) installer compilation contains:**
 
 - com_socialshare [SocialSahre](https://github.com/hr-it-solutions/DD_J_com_socialshare)
-- plg_content_socialshare_autopush [Content - SocialSahre AutoPush](https://github.com/hr-it-solutions/DD_J_plg_content_socialshare_autopush)
 - plg_editors-xtd_socialshare [Button - SocialSahre](https://github.com/hr-it-solutions/DD_J_plg_editors-xtd_socialshare)
+
+- plg_content_socialshare_autopush [Content - SocialSahre AutoPush](https://github.com/hr-it-solutions/DD_J_plg_content_socialshare_autopush) (COMMING SOON)
 
 # System requirements
 Joomla 3.8 +                                                                                <br>
@@ -34,8 +35,7 @@ PHP CURL extension                                                              
 PHP OpenSSL extension (already installed in most systems)
 
 # DD_ Namespace
-DD_ stands for  **D**idl**d**u e.K. | HR IT-Solutions (Brand recognition)                   <br>
-It is a namespace prefix, provided to avoid element name conflicts.
+DD_ is a namespace prefix, provided to avoid element name conflicts.  <br>
 
 <br>
 Author: HR IT-Solutions Florian Häusler https://www.hr-it-solution.com                      <br>
