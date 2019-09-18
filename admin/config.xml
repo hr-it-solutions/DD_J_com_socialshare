@@ -25,10 +25,44 @@
                description="COM_DD_SOCIALSHARE_FACEBOOK_API_SETTING_CONSUMERSECRET_DESC"
         />
 
+        <field name="facebook_accountID"
+               type="text"
+               label="COM_DD_SOCIALSHARE_FACEBOOK_API_SETTING_ACCOUNTID_LABEL"
+               description="COM_DD_SOCIALSHARE_FACEBOOK_API_SETTING_ACCOUNTID_DESC"
+        />
+
+        <field name="facebook_accessToken_helper"
+               type="spacer"
+               label="COM_DD_SOCIALSHARE_FACEBOOK_API_SETTING_ACCESSTOKEN_HELPER_LABEL"
+        />
+
         <field name="facebook_accessToken"
                type="text"
+               readonly="true"
+               class="readonly"
                label="COM_DD_SOCIALSHARE_FACEBOOK_API_SETTING_ACCESSTOKEN_LABEL"
                description="COM_DD_SOCIALSHARE_FACEBOOK_API_SETTING_ACCESSTOKEN_DESC"
+        />
+
+        <field name="facebook_accessToken_type"
+               type="text"
+               readonly="true"
+               class="readonly"
+               label="COM_DD_SOCIALSHARE_FACEBOOK_API_SETTING_ACCESSTOKEN_TYPE_LABEL"
+               description="COM_DD_SOCIALSHARE_FACEBOOK_API_SETTING_ACCESSTOKEN_TYPE_DESC"
+        />
+
+        <field name="facebook_accessToken_created"
+               type="text"
+               readonly="true"
+               class="readonly"
+               label="COM_DD_SOCIALSHARE_FACEBOOK_API_SETTING_ACCESSTOKEN_CREATED_LABEL"
+               description="COM_DD_SOCIALSHARE_FACEBOOK_API_SETTING_ACCESSTOKEN_CREATED_DESC"
+        />
+
+        <field name="facebook_accessToken_helper2"
+               type="spacer"
+               label="COM_DD_SOCIALSHARE_FACEBOOK_API_SETTING_ACCESSTOKEN_HELPER2_LABEL"
         />
 
     </fieldset>

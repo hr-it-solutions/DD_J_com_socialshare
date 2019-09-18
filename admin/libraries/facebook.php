@@ -69,7 +69,7 @@ class FacebookApi
 		}
 		catch(Exception $e)
 		{
-			$e->getMessage();
+			 return $e->getMessage();
 		}
 
 		return true;

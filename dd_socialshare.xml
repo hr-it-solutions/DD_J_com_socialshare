@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <extension type="component" version="3.8.0" method="upgrade">
     <name>com_dd_socialshare</name>
-    <version>1.0.0.0</version>
+    <version>1.0.0.1</version>
     <creationDate>30.09.2017</creationDate>
-    <author>HR IT-Solutions Florian Häusler</author>
+    <author>HR-IT-Solutions Florian Häusler</author>
     <authorEmail>info@hr-it-solutions.com</authorEmail>
     <authorUrl>https://www.hr-it-solutions.com</authorUrl>
-    <copyright>Copyright (C) 2017 - 2017 Didldu e.K. | HR IT-Solutions</copyright>
+    <copyright>Copyright (C) 2017 - 2019 HR-IT-Solutions GmbH</copyright>
     <license>GNU/GPLv2 only</license>
     <description>COM_DD_SOCIALSHARE_XML_DESCRIPTION</description>
 
@@ -57,9 +57,9 @@
         </files>
         <languages folder="admin">
             <language tag="en-GB">language/en-GB/en-GB.com_dd_socialshare.ini</language>
-            <language tag="en-GB">language/en-GB/en-GB.com_dd_socialshar.sys.ini</language>
-            <language tag="de-DE">language/de-DE/de-DE.com_dd_socialshar.ini</language>
-            <language tag="de-DE">language/de-DE/de-DE.com_dd_socialshar.sys.ini</language>
+            <language tag="en-GB">language/en-GB/en-GB.com_dd_socialshare.sys.ini</language>
+            <language tag="de-DE">language/de-DE/de-DE.com_dd_socialshare.ini</language>
+            <language tag="de-DE">language/de-DE/de-DE.com_dd_socialshare.sys.ini</language>
         </languages>
     </administration>
 

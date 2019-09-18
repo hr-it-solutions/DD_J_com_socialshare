@@ -3,7 +3,7 @@
  * @package    DD_SocialShare
  *
  * @author     HR IT-Solutions Florian Häusler <info@hr-it-solutions.com>
- * @copyright  Copyright (C) 2017 - 2017 Didldu e.K. | HR IT-Solutions
+ * @copyright  Copyright (C) 2017 - 2019 HR-IT-Solutions GmbH
  * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  **/
 
@@ -130,8 +130,8 @@ class DD_SocialShareModelArticles extends JModelList
 		// Join over socialshare
 		$query  ->select(
 			$db->quoteName('s.id') . 'AS' . $db->quoteName('socialsahre_id') . ',' .
-			$db->quoteName('s.facebook') . ',' .
-			$db->quoteName('s.twitter')
+			'IFNULL(' . $db->quoteName('s.facebook') . ', \'0000-00-00 00:00:00\')' . 'AS' . $db->quoteName('facebook') . ',' .
+			'IFNULL(' . $db->quoteName('s.twitter') . ', \'0000-00-00 00:00:00\')' . 'AS' . $db->quoteName('twitter')
 		)
 			->leftJoin($db->qn('#__dd_socialshare', 's') . ' ON (' . $db->qn('s.content_id') . ' = ' . $db->qn('a.id') . ')');
 

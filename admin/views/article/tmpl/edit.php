@@ -3,7 +3,7 @@
  * @package    DD_SocialShare
  *
  * @author     HR IT-Solutions Florian Häusler <info@hr-it-solutions.com>
- * @copyright  Copyright (C) 2017 - 2017 Didldu e.K. | HR IT-Solutions
+ * @copyright  Copyright (C) 2017 - 2019 HR-IT-Solutions GmbH
  * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  **/
 
@@ -16,7 +16,9 @@ JHtml::_('formbehavior.chosen', 'select');
 
 JHtml::_('script', 'com_dd_socialshare/admin.dd_socialshare.min.js', array('version' => 'auto', 'relative' => true));
 
+JText::script('COM_DD_SOCIALSHARE_BUTTON_SHARE_NOW');
 JText::script('COM_DD_SOCIALSHARE_BUTTON_SHARE_AGAIN');
+JText::script('COM_DD_SOCIALSHARE_BUTTON_SHARE_WAIT');
 
 ?>
 <div id="dd_socialshare-article" class="row-fluid dd_socialshare">
@@ -61,10 +63,10 @@ JText::script('COM_DD_SOCIALSHARE_BUTTON_SHARE_AGAIN');
         <div class="row-fluid form-horizontal-desktop">
             <div class="span6 well">
                 <h3><?php echo JText::_('COM_DD_SOCIALSHARE_FACEBOOK') . ' ' .  JText::_('COM_DD_SOCIALSHARE_PREVIEW'); ?>
-                    <span class="icon-twitter pull-right"></span>
+                    <span class="icon-facebook pull-right"></span>
                 </h3><hr>
                 <div class="row-fluid">
-                    <div class="span6 control-group">
+                    <div class="span6 control-group modal-100" style="display: none">
                         <div class="control-label">
                             <?php echo $this->form->getLabel('facebook_post_title'); ?>
                         </div>
@@ -72,7 +74,7 @@ JText::script('COM_DD_SOCIALSHARE_BUTTON_SHARE_AGAIN');
                             <?php echo $this->form->getInput('facebook_post_title'); ?>
                         </div>
                     </div>
-                    <div class="span6 control-group">
+                    <div class="span6 control-group modal-100" style="display: none">
                         <div class="control-label">
                             <?php echo $this->form->getLabel('facebook_post_image'); ?>
                         </div>

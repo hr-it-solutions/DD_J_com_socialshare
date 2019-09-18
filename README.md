@@ -1,5 +1,5 @@
 # DD_J_com_socialshare
-A Joomla! Backend component for social sharing. Content (com_content) social push / social auto share.
+A Joomla! Backend component for EU Privacy conform social sharing. Content (com_content) social push / social auto share.
 
 [![GPL Licence](https://badges.frapsoft.com/os/gpl/gpl.png?v=102)](https://opensource.org/licenses/GPL-2.0/)
 
@@ -7,6 +7,7 @@ A Joomla! Backend component for social sharing. Content (com_content) social pus
 - Share content (com_content) to social networks like (Twitter, Facebook).
 - Prevent function to share article only once.
 - Confirmation windows to preview posts bevor share.
+- EU Privacy conform
 
 ### Plugin Features
 - AutoPush functionality on content after save.
@@ -24,20 +25,20 @@ Errors and technical modification subject to change.
 **The [Component package](https://github.com/hr-it-solutions/DD_J_pkg_com_socialshare_package) installer compilation contains:**
 
 - com_socialshare [SocialSahre](https://github.com/hr-it-solutions/DD_J_com_socialshare)
-- plg_content_socialshare_autopush [Content - SocialSahre AutoPush](https://github.com/hr-it-solutions/DD_J_plg_content_socialshare_autopush)
 - plg_editors-xtd_socialshare [Button - SocialSahre](https://github.com/hr-it-solutions/DD_J_plg_editors-xtd_socialshare)
+
+- plg_content_socialshare_autopush [Content - SocialSahre AutoPush](https://github.com/hr-it-solutions/DD_J_plg_content_socialshare_autopush) (COMMING SOON)
 
 # System requirements
 Joomla 3.8 +                                                                                <br>
-PHP 7.0 or newer is recommended.
-PHP CURL extension
+PHP 7.0 or newer is recommended.                                                            <br>
+PHP CURL extension                                                                          <br>
 PHP OpenSSL extension (already installed in most systems)
 
 # DD_ Namespace
-DD_ stands for  **D**idl**d**u e.K. | HR IT-Solutions (Brand recognition)                   <br>
-It is a namespace prefix, provided to avoid element name conflicts.
+DD_ is a namespace prefix, provided to avoid element name conflicts.  <br>
 
 <br>
-Author: HR IT-Solutions Florian Häusler https://www.hr-it-solution.com                      <br>
-Copyright: (C) 2017 - 2017 Didldu e.K. | HR IT-Solutions                                    <br>
+Author: HR IT-Solutions Florian Häusler https://www.hr-it-solution.com             <br>
+Copyright: (C) 2017 - 2019 HR-IT-Solutions GmbH                                    <br>
 http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
