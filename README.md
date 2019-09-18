@@ -1,5 +1,5 @@
 # DD_J_com_socialshare
-A Joomla! Backend component for social sharing. Content (com_content) social push / social auto share.
+A Joomla! Backend component for EU Privacy conform social sharing. Content (com_content) social push / social auto share.
 
 [![GPL Licence](https://badges.frapsoft.com/os/gpl/gpl.png?v=102)](https://opensource.org/licenses/GPL-2.0/)
 
@@ -7,6 +7,7 @@ A Joomla! Backend component for social sharing. Content (com_content) social pus
 - Share content (com_content) to social networks like (Twitter, Facebook).
 - Prevent function to share article only once.
 - Confirmation windows to preview posts bevor share.
+- EU Privacy conform
 
 ### Plugin Features
 - AutoPush functionality on content after save.
@@ -38,6 +39,6 @@ PHP OpenSSL extension (already installed in most systems)
 DD_ is a namespace prefix, provided to avoid element name conflicts.  <br>
 
 <br>
-Author: HR IT-Solutions Florian Häusler https://www.hr-it-solution.com                      <br>
+Author: HR IT-Solutions Florian Häusler https://www.hr-it-solution.com             <br>
 Copyright: (C) 2017 - 2019 HR-IT-Solutions GmbH                                    <br>
 http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
